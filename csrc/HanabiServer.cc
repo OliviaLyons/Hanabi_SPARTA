@@ -284,6 +284,7 @@ int Server::runGame(std::vector<Bot*> players, const std::vector<Card>& stackedD
 }
 
 int Server::runToCompletion() {
+	
   while (!this->gameOver()) {
     if (log_) {
       *log_ << "====> cards remaining: " << this->cardsRemainingInDeck() << " , empty? " << this->deck_.empty() << " , countdown " << finalCountdown_ << " , mulligans " << this->mulligansRemaining_ << " , score " << this->currentScore() << std::endl;
@@ -310,6 +311,8 @@ int Server::runToCompletion() {
     assert(0 <= finalCountdown_ && finalCountdown_ <= numPlayers_);
     if (deck_.empty()) finalCountdown_ += 1;
   }
+
+  *log_ << "\n ummmm " << this->handOfPlayer(0) <<  std::endl;
 
   return this->currentScore();
 }
